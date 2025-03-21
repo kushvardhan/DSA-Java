@@ -159,14 +159,13 @@ public class First{
     }
     
     public static void subArray(int[] arr){
-        for(int i=0;i<arr.length-1;i++){
-  
-            for(int j=i+1;j<arr.length;j++){
-                int n=0;
-                while(n<=arr.length){
-                    System.out.print("("+arr[i]+", "+arr[j]+")");
-                    n++;
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = i; j < arr.length; j++) {
+                System.out.print("(");
+                for (int k = i; k <= j; k++) {
+                    System.out.print(arr[k] + (k < j ? ", " : ""));
                 }
+                System.out.print(") ");
             }
             System.out.println();
         }
