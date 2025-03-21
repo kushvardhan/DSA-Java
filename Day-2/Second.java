@@ -77,8 +77,6 @@ public class Second {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        // System.out.print("Enter n: ");
-        // int n = sc.nextInt();
         int[] arr = {11,-9,-01,34,9,-9,10};
         // bubbleSort(arr);
         // selectionSort(arr);
