@@ -47,13 +47,42 @@ public class Second {
         }
         System.out.println("Sorted Array using Insertion Sort: " + Arrays.toString(arr));
     }
+
+    public static void countingSort(int[] arr) {
+        if (arr.length == 0) return; 
+        
+        int min = arr[0], max = arr[0];
+        for (int num : arr) {
+            if (num < min) min = num;
+            if (num > max) max = num;
+        }
+
+        int range = max - min + 1; 
+        int[] count = new int[range];
+
+        for (int num : arr) {
+            count[num - min]++;
+        }
+
+        int index = 0;
+        for (int i = 0; i < range; i++) {
+            while (count[i] > 0) {
+                arr[index++] = i + min;
+                count[i]--;
+            }
+        }
+
+        System.out.println("Sorted Array using Counting Sort: " + Arrays.toString(arr));
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         // System.out.print("Enter n: ");
         // int n = sc.nextInt();
-        int[] arr = {11,-9,-01,34,9,10};
+        int[] arr = {11,-9,-01,34,9,-9,10};
         // bubbleSort(arr);
         // selectionSort(arr);
-        insertionSort(arr);
+        // insertionSort(arr);
+        countingSort(arr);
     }
 }
