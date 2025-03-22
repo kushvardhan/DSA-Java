@@ -31,8 +31,7 @@ public class Second {
             arr[minPos] =arr[i];
             arr[i] = temp;
         }
-        System.out.println("Sorted Array using Selection Sort: " + Arrays.toString(arr));
-        
+        System.out.println("Sorted Array using Selection Sort: " + Arrays.toString(arr)); 
     }
 
     public static void insertionSort(int[] arr){
