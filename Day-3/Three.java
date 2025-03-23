@@ -39,6 +39,41 @@ public class Three {
         }
         System.out.println("Substring: "+ s2);
     }
+    
+    public static void stringComparison(){
+        String s1 = "Kush";
+        String s2 = "Kush";
+        StringBuilder s3 = new StringBuilder("Kush");
+
+        if(s1==s2){ System.out.println("s1 and s2 are equal");}
+        else{ System.out.println("s1 and s2 aren't equal.");}
+
+        // if(s1 == s3.toString()){     // we cant compare String to StringBuilder
+        if(s1.equals(s3)){     
+        System.out.println("s1 and s3 are equal.");
+        }
+        else{
+            System.out.println("S1 and s3 aren't equal.");
+        }
+
+    }
+    
+    public static void convertEveryFirstLetterIntoUpperCase(String str) {
+        StringBuilder s = new StringBuilder();
+        s.append(Character.toUpperCase(str.charAt(0))); 
+    
+        for (int i = 1; i < str.length(); i++) {
+            if (str.charAt(i) == ' ' && i + 1 < str.length()) { 
+                s.append(' ');
+                s.append(Character.toUpperCase(str.charAt(i + 1)));  
+                i++;
+            } else {
+                s.append(str.charAt(i));
+            }
+        }
+    
+        System.out.println(s);
+    }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter String: ");
@@ -47,13 +82,15 @@ public class Three {
         // palindromeString(str);
         // shortestPath(str);
         // SubString(str,2,6);
-        String fruits[] = {"Apple","Mango","Guava","Kiwi","Avacado"};
-        String largest = fruits[0];
-        for(int i=1;i<fruits.length;i++){
-            if(largest.compareTo(fruits[i])<0){
-                largest = fruits[i];
-            }
-        }
-        System.out.print("Largest in the fruits: "+largest);
+        // String fruits[] = {"Apple","Mango","Guava","Kiwi","Avacado"};
+        // String largest = fruits[0];
+        // for(int i=1;i<fruits.length;i++){
+        //     if(largest.compareTo(fruits[i])<0){
+        //         largest = fruits[i];
+        //     }
+        // }
+        // System.out.print("Largest in the fruits: "+largest);
+        // stringComparison();
+        convertEveryFirstLetterIntoUpperCase("hello namaste chalo, eie   ");
     }
 }

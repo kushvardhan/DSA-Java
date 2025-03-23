@@ -2,84 +2,82 @@ import java.util.*;
 
 public class Second {
 
-    public static void bubbleSort(int[] arr) {
-        boolean swapped;
-        for (int i = 0; i < arr.length - 1; i++) {
-            swapped = false;
-            for (int j = 0; j < arr.length - 1 - i; j++) {
-                if (arr[j] > arr[j + 1]) {
-                    int temp = arr[j];
-                    arr[j] = arr[j + 1];
-                    arr[j + 1] = temp;
-                    swapped = true;
-                }
-            }
-            if (!swapped) break;
-        }
-        System.out.println("Sorted Array using Optimized Bubble Sort: " + Arrays.toString(arr));
-    }
-    
-    public static void selectionSort(int[] arr){
+    public static void bubbleSort(int[] arr){
         for(int i=0;i<arr.length-1;i++){
-            int minPos = i;
-            for(int j=i+1;j<arr.length;j++){
-                if(arr[minPos]>arr[j]){
-                    minPos=j;
+            for(int j=0;j<arr.length-1-i;j++){
+                if(arr[j]>arr[j+1]){
+                    int temp = arr[j+1];
+                arr[j+1] = arr[j];
+                arr[j] = temp;
                 }
             }
-            int temp = arr[minPos];
-            arr[minPos] =arr[i];
-            arr[i] = temp;
         }
-        System.out.println("Sorted Array using Selection Sort: " + Arrays.toString(arr)); 
+        System.out.println(Arrays.toString(arr));
     }
 
-    public static void insertionSort(int[] arr){
-        for(int i=1;i<arr.length;i++){
-            int curr = arr[i];
-            int prev = i-1;
-            while(prev >= 0 && arr[prev] > curr ) {
-                arr[prev+1] = arr[prev];
-                prev--;
+    public static void selectionSort(int[] arr){
+        for(int i=0;i< arr.length-1;i++){
+            int min=Integer.MAX_VALUE;
+            int m=-1;
+            for(int j=i;j<arr.length;j++){
+                if(arr[j]<min){
+                    min=arr[j];
+                    m = j;
+                }
+                
             }
-            arr[prev+1] = curr;
+            int temp = arr[i];
+            arr[i] = arr[m];
+            arr[m] = temp;
         }
-        System.out.println("Sorted Array using Insertion Sort: " + Arrays.toString(arr));
+        System.out.println(Arrays.toString(arr));
+
+    }
+    
+    public static void insertionSort(int[] arr){
+            int n = arr.length;
+            for (int i = 1; i < n; i++) {
+                int key = arr[i];
+                int j = i - 1;
+                while (j >= 0 && arr[j] > key) {
+                    arr[j + 1] = arr[j];
+                    j--;
+                }
+                arr[j + 1] = key;
+            }
+            System.out.println(Arrays.toString(arr));
+           
     }
 
     public static void countingSort(int[] arr) {
-        if (arr.length == 0) return; 
-        
-        int min = arr[0], max = arr[0];
-        for (int num : arr) {
-            if (num < min) min = num;
-            if (num > max) max = num;
-        }
-
-        int range = max - min + 1; 
+        int max = Arrays.stream(arr).max().getAsInt();
+        int min = Arrays.stream(arr).min().getAsInt();
+        int range = max - min + 1;
         int[] count = new int[range];
+        int[] output = new int[arr.length];
 
         for (int num : arr) {
             count[num - min]++;
         }
 
-        int index = 0;
-        for (int i = 0; i < range; i++) {
-            while (count[i] > 0) {
-                arr[index++] = i + min;
-                count[i]--;
-            }
+        for (int i = 1; i < count.length; i++) {
+            count[i] += count[i - 1];
         }
 
-        System.out.println("Sorted Array using Counting Sort: " + Arrays.toString(arr));
-    }
+        for (int i = arr.length - 1; i >= 0; i--) {
+            output[count[arr[i] - min] - 1] = arr[i];
+            count[arr[i] - min]--;
+        }
 
+        System.arraycopy(output, 0, arr, 0, arr.length);
+        System.out.println(Arrays.toString(arr));
+    }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int[] arr = {11,-9,-01,34,9,-9,10};
         // bubbleSort(arr);
         // selectionSort(arr);
-        // insertionSort(arr);
+         insertionSort(arr);
         countingSort(arr);
     }
 }
