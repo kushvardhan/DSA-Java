@@ -74,6 +74,26 @@ public class Three {
     
         System.out.println(s);
     }
+    
+    public static void anagramString(String s1, String s2) {
+        char[] charArray1 = s1.toCharArray();
+        char[] charArray2 = s2.toCharArray(); 
+        
+        Arrays.sort(charArray1);
+        Arrays.sort(charArray2);
+
+        String sortedString1 = new String(charArray1);
+        String sortedString2 = new String(charArray2);
+        
+        System.out.println(sortedString1 + " " + sortedString2);
+        
+        if (sortedString1.equals(sortedString2)) {
+            System.out.print("Both Strings are Anagram");
+        } else {
+            System.out.print("Not anagram.");
+        }
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter String: ");
@@ -91,6 +111,7 @@ public class Three {
         // }
         // System.out.print("Largest in the fruits: "+largest);
         // stringComparison();
-        convertEveryFirstLetterIntoUpperCase("hello namaste chalo, eie   ");
+        // convertEveryFirstLetterIntoUpperCase("hello namaste chalo, eie   ");
+        anagramString("listen", "silent");
     }
 }
