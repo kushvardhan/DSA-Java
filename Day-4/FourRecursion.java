@@ -26,9 +26,17 @@ public class FourRecursion {
     }
     public static int Factorial(int n){
         if(n==0) return 1;
-        int fn1 = Factorial(n-1);
-        int fn = n * Factorial(n-1);
-        return fn;
+        return n * Factorial(n-1);
+    }
+
+    public static boolean isSorted(int[] arr,int i){
+        if(i == arr.length-1){
+            return true;
+        }
+        if(arr[i]>arr[i+1]){    
+            return false;
+        }
+        return isSorted(arr, i+1);
     }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -39,5 +47,7 @@ public class FourRecursion {
         // System.out.println();
         // PrintNto1(n);
         System.out.println(Factorial(n));
+        int[] arr = {3,8,89,1,98};
+        System.out.println(isSorted(arr, 0));
     }
 }
